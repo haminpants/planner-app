@@ -56,10 +56,10 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="108dp"
-        android:layout_height="120dp"
+        android:layout_width="86dp"
+        android:layout_height="97dp"
         app:srcCompat="@drawable/wallet_img"
-        tools:layout_editor_absoluteX="73dp"
-        tools:layout_editor_absoluteY="342dp" />
+        tools:layout_editor_absoluteX="76dp"
+        tools:layout_editor_absoluteY="259dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
