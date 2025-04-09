@@ -28,6 +28,7 @@ public class RegisterActivity extends AppCompatActivity {
         txtFirstName = findViewById(R.id.txtFirstName);
         txtLastName = findViewById(R.id.txtLastName);
         txtEmailRegister = findViewById(R.id.txtEmailRegister);
+        
 
     }
 }
