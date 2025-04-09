@@ -55,11 +55,15 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imgBudget"
         android:layout_width="86dp"
         android:layout_height="97dp"
-        app:srcCompat="@drawable/wallet_img"
-        tools:layout_editor_absoluteX="76dp"
-        tools:layout_editor_absoluteY="259dp" />
+        app:layout_constraintBottom_toTopOf="@+id/view4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.132"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2"
+        app:layout_constraintVertical_bias="0.392"
+        app:srcCompat="@drawable/wallet_img" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
