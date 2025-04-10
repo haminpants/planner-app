@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Planner App</string>
+    <string name="delete">Delete</string>
+    <string name="placeholder">PLACEHOLDER</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -11,4 +13,10 @@
     <string name="login_failed">"Login failed"</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- To Do Activity Strings -->
+    <string name="to_do_title">To Do List</string>
+    <string name="btn_add_to_do_item">Add To List</string>
+    <string name="new_to_do_item_title">New To Do Item</string>
+    <string name="new_to_do_hint">Task</string>
 </resources>
