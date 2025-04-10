@@ -5,13 +5,17 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BudgetActivity">
+    tools:context=".BudgetActivity"
+    android:padding="16dp"
+    android:background="#b4cfe0">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/txtTotalBudget"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total Budget"
+        android:text="Total Budget: "
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.048"
@@ -19,42 +23,72 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.022" />
 
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="383dp"
-        android:layout_height="271dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.869" />
-
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="328dp"
         android:text="Summary"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintHorizontal_bias="0.038"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/txtTotalBudget"
+        app:layout_constraintVertical_bias="0.22" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Budget"
-        tools:layout_editor_absoluteX="265dp"
-        tools:layout_editor_absoluteY="156dp" />
+<!--        <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="16dp"-->
+<!--        android:orientation="vertical"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintBaseline_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        tools:layout_editor_absoluteY="360dp"-->
+<!--        android:layout_marginTop="16dp">-->
+
+
+<!--        <TextView-->
+<!--            android:id="@+id/textView10"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Category Name Example" />-->
+
+<!--        <ProgressBar-->
+<!--            android:id="@+id/progressBar2"-->
+<!--            style="?android:attr/progressBarStyleHorizontal"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:max="100"-->
+<!--            android:progress="0"/>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/textView11"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="$0 of $1000" />-->
+
+<!--    </LinearLayout>-->
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="81dp"
-        android:layout_height="95dp"
+        android:id="@+id/btnAddExpense"
+        android:layout_width="57dp"
+        android:layout_height="70dp"
+        android:onClick="showDialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@android:drawable/ic_menu_add"
-        tools:layout_editor_absoluteX="165dp"
-        tools:layout_editor_absoluteY="120dp" />
+        tools:layout_editor_absoluteY="78dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/budgetRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
