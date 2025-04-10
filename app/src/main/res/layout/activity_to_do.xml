@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activities.ToDoActivity"
+        android:background="#3498db"
+        android:id="@+id/main">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp">
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+            <ImageView
+                    android:src="@drawable/lists_48px"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/imageView2"
+                    android:backgroundTint="#EFEBEB"
+                    app:tint="#FFFFFF" />
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical">
+
+                <TextView
+                        android:text="@string/to_do_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView"
+                        android:textColor="#FBF3F3"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                <TextView
+                        android:text="Hello Sam"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtView_welcome"
+                        android:textColor="#FFFFFF"
+                        android:textSize="40sp"
+                        android:textStyle="bold" />
+            </LinearLayout>
+
+            <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+            <ImageButton
+                    android:src="@drawable/home_48px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    app:tint="#FFFFFF"
+                    android:layout_weight="0"
+                    android:onClick="returnToHome" />
+
+        </LinearLayout>
+
+        <Button
+                android:text="@string/btn_add_to_do_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_addItem"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:onClick="createNewItem" />
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/recView_toDo">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
