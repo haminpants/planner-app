@@ -47,7 +47,7 @@
                         android:textStyle="bold" />
 
                 <TextView
-                        android:text="Hello Sam"
+                        android:text="@string/placeholder"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/txtView_welcome"

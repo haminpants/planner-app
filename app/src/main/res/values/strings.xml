@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Planner App</string>
     <string name="delete">Delete</string>
+    <string name="placeholder">PLACEHOLDER</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
