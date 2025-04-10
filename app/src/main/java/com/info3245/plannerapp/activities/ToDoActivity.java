@@ -1,8 +1,8 @@
 package com.info3245.plannerapp.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -22,14 +22,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.info3245.plannerapp.HomepageActivity;
 import com.info3245.plannerapp.R;
 import com.info3245.plannerapp.VerticalSpacerItemDecoration;
-import com.info3245.plannerapp.data.ToDoItem;
 import com.info3245.plannerapp.adapters.ToDoItemAdapter;
+import com.info3245.plannerapp.data.ToDoItem;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ToDoActivity extends AppCompatActivity {
-    public List<ToDoItem> items = new ArrayList<>();
+    private static final String fileName = "todo_data.txt";
+    public List<ToDoItem> items;
 
     TextView txtView_welcome;
     RecyclerView recView_toDo;
@@ -45,6 +50,8 @@ public class ToDoActivity extends AppCompatActivity {
             return insets;
         });
 
+        items = loadToDo();
+
         txtView_welcome = findViewById(R.id.txtView_welcome);
 
         recView_toDo = findViewById(R.id.recView_toDo);
@@ -54,6 +61,7 @@ public class ToDoActivity extends AppCompatActivity {
     }
 
     public void returnToHome (View v) {
+        saveToDo();
         startActivity(new Intent(this, HomepageActivity.class));
     }
 
@@ -87,5 +95,35 @@ public class ToDoActivity extends AppCompatActivity {
         updatedList.remove(index);
         recView_toDo.setAdapter(new ToDoItemAdapter(updatedList));
         items = updatedList;
+    }
+
+    private void saveToDo () {
+        try (FileOutputStream outputStream = openFileOutput(fileName, Context.MODE_PRIVATE)) {
+            String toDoItems = items.stream().map(ToDoItem::getTitle).reduce("",
+                (current, addition) -> current + "\n" + addition).trim();
+            outputStream.write(toDoItems.getBytes());
+            outputStream.flush();
+        }
+        catch (Exception e) {
+            Toast.makeText(this, "Failed to save changes", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private List<ToDoItem> loadToDo () {
+        try (FileInputStream inputStream = openFileInput(fileName)) {
+            StringBuilder output = new StringBuilder();
+            int readByte;
+
+            while ((readByte = inputStream.read()) != -1) {
+                output.append((char) readByte);
+            }
+
+            return Arrays.stream(output.toString().trim().split("\n"))
+                .map(ToDoItem::new).collect(Collectors.toList());
+        }
+        catch (Exception e) {
+            Toast.makeText(this, "Failed to load to do", Toast.LENGTH_SHORT).show();
+        }
+        return List.of();
     }
 }
