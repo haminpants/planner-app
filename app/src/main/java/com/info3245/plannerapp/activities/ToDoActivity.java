@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ToDoActivity extends AppCompatActivity {
-    public List<ToDoItem> items;
+    public List<ToDoItem> items = new ArrayList<>();
 
     TextView txtView_welcome;
     RecyclerView recView_toDo;
@@ -44,8 +44,6 @@ public class ToDoActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-        items = List.of(new ToDoItem("A"), new ToDoItem("B"), new ToDoItem("C"));
 
         txtView_welcome = findViewById(R.id.txtView_welcome);
 

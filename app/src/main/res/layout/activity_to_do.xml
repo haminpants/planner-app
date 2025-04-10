@@ -79,7 +79,9 @@
                 android:id="@+id/btn_addItem"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="10dp"
-                android:onClick="createNewItem" />
+                android:onClick="createNewItem"
+                android:backgroundTint="#FDFDFD"
+                android:textColor="#000000" />
 
         <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
