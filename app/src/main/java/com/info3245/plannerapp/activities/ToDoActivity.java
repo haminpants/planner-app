@@ -61,7 +61,15 @@ public class ToDoActivity extends AppCompatActivity {
     }
 
     public void returnToHome (View v) {
-        saveToDo();
+        List<Integer> completedIndexes = getCompletedItemIndexes();
+        ArrayList<ToDoItem> saveItems = new ArrayList<>();
+
+        for (int i = 0; i < items.size(); i++) {
+            if (completedIndexes.contains(i)) continue;
+            saveItems.add(items.get(i));
+        }
+
+        saveToDo(saveItems);
         startActivity(new Intent(this, HomepageActivity.class));
     }
 
@@ -97,9 +105,9 @@ public class ToDoActivity extends AppCompatActivity {
         items = updatedList;
     }
 
-    private void saveToDo () {
+    private void saveToDo (List<ToDoItem> saveItems) {
         try (FileOutputStream outputStream = openFileOutput(fileName, Context.MODE_PRIVATE)) {
-            String toDoItems = items.stream().map(ToDoItem::getTitle).reduce("",
+            String toDoItems = saveItems.stream().map(ToDoItem::getTitle).reduce("",
                 (current, addition) -> current + "\n" + addition).trim();
             outputStream.write(toDoItems.getBytes());
             outputStream.flush();
@@ -118,6 +126,8 @@ public class ToDoActivity extends AppCompatActivity {
                 output.append((char) readByte);
             }
 
+            if (output.toString().isBlank()) return List.of();
+
             return Arrays.stream(output.toString().trim().split("\n"))
                 .map(ToDoItem::new).collect(Collectors.toList());
         }
@@ -125,5 +135,15 @@ public class ToDoActivity extends AppCompatActivity {
             Toast.makeText(this, "Failed to load to do", Toast.LENGTH_SHORT).show();
         }
         return List.of();
+    }
+
+    private List<Integer> getCompletedItemIndexes () {
+        ArrayList<Integer> removeQueue = new ArrayList<>();
+        for (int i = 0; i < recView_toDo.getChildCount(); i++) {
+            ToDoItemAdapter.ViewHolder item =
+                (ToDoItemAdapter.ViewHolder) recView_toDo.findViewHolderForAdapterPosition(i);
+            if (item != null && item.isComplete()) removeQueue.add(i);
+        }
+        return removeQueue;
     }
 }

@@ -21,12 +21,12 @@
         <CheckBox
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:id="@+id/cb_toDoItem"
+                android:id="@+id/cb_isComplete"
                 android:background="?android:attr/listChoiceIndicatorMultiple"
                 android:button="@null" />
 
         <TextView
-                android:text="TITLE"
+                android:text=""
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/txtView_title"

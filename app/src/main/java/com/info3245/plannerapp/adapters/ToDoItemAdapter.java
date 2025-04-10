@@ -4,6 +4,7 @@ import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +46,7 @@ public class ToDoItemAdapter extends RecyclerView.Adapter<ToDoItemAdapter.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
         private final TextView txtView_label;
+        private final CheckBox cb_isComplete;
         private final int index;
 
         private ViewHolder (@NonNull View view, int index) {
@@ -53,11 +55,16 @@ public class ToDoItemAdapter extends RecyclerView.Adapter<ToDoItemAdapter.ViewHo
             view.setOnCreateContextMenuListener(this);
 
             txtView_label = view.findViewById(R.id.txtView_title);
+            cb_isComplete = view.findViewById(R.id.cb_isComplete);
         }
         @Override
         public void onCreateContextMenu (ContextMenu menu, View v,
             ContextMenu.ContextMenuInfo menuInfo) {
             menu.add(0, index, 0, "Delete");
+        }
+
+        public boolean isComplete () {
+            return cb_isComplete.isChecked();
         }
     }
 }
