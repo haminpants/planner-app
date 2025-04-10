@@ -20,7 +20,7 @@ public class BudgetActivity extends AppCompatActivity{
     private ImageView btnAddExpense;
     private RecyclerView budgetRecyclerView;
     private BudgetExpenseAdapter budgetAdapter;
-    private List<BudgetCategory> budgetList;
+    private List<BudgetExpense> budgetList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,23 +29,23 @@ public class BudgetActivity extends AppCompatActivity{
         setContentView(R.layout.activity_budget);
 
         //initializes RecyclerView
-        budgetRecyclerView = findViewById(R.id.budgetRecyclerView);
-//        budgetRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-//        budgetAdapter = new BudgetCategory();
-        budgetRecyclerView.setAdapter(budgetAdapter);
+//        budgetRecyclerView = findViewById(R.id.budgetRecyclerView);
+////        budgetRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+//
+////        budgetAdapter = new BudgetCategory();
+//        budgetRecyclerView.setAdapter(budgetAdapter);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        btnAddExpense = findViewById(R.id.btnAddExpense);
-
-
-    }
-    public void showDialog(View v) {
-        BudgetDialogFragment dialog = new BudgetDialogFragment();
-        dialog.show(getSupportFragmentManager(), "BudgetDialog");
+//        btnAddExpense = findViewById(R.id.btnAddExpense);
+//
+//
+//    }
+//    public void showDialog(View v) {
+//        BudgetDialogFragment dialog = new BudgetDialogFragment();
+//        dialog.show(getSupportFragmentManager(), "BudgetDialog");
     }
 }
