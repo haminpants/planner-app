@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <EditText
-        android:id="@+id/newCategoryName"
+        android:id="@+id/txtName"
         android:layout_width="324dp"
         android:layout_height="48dp"
         android:ems="10"
@@ -19,7 +19,7 @@
         tools:layout_editor_absoluteY="34dp" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/txtDescription"
         android:layout_width="324dp"
         android:layout_height="48dp"
         android:layout_marginTop="8dp"
@@ -29,32 +29,32 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newCategoryName" />
+        app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
     <EditText
-        android:id="@+id/newCategoryBudget"
+        android:id="@+id/txtBudgetLimit"
         android:layout_width="324dp"
         android:layout_height="48dp"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Total Budget"
+        android:hint="Budget Limit"
         android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
+        app:layout_constraintTop_toBottomOf="@+id/txtDescription" />
 
     <EditText
-        android:id="@+id/newCategoryExpense"
+        android:id="@+id/txtAmountSpent"
         android:layout_width="324dp"
         android:layout_height="48dp"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Budget Expense Spent"
+        android:hint="Amount Spent"
         android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newCategoryBudget" />
+        app:layout_constraintTop_toBottomOf="@+id/txtBudgetLimit" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

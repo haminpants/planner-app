@@ -1,30 +1,53 @@
 package com.info3245.plannerapp;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 public class BudgetExpense {
-    private String description;
-    private double budget;
-    private double spent;
+    private String name;
+    private BigDecimal budgetLimit;
+    private BigDecimal amountSpent;
+    private LocalDate date;
 
-    public BudgetExpense (String description                                                                                                                                                                                                                                                     , double budget, double spent) {
-        this.description = description;
-        this.budget = budget;
-        this.spent = spent;
+    // Constructor to initialize expense
+    public BudgetExpense(String name, BigDecimal budgetLimit, BigDecimal amountSpent, LocalDate date) {
+        this.name = name;
+        this.budgetLimit = budgetLimit;
+        this.amountSpent = amountSpent;
+        this.date = date;
     }
 
-    public String getDescription() {
-        return description;
+    // Getter for name
+    public String getName() {
+        return name;
     }
 
-    public double getBudget() {
-        return budget;
-    }
-    public double getSpent(){
-        return spent;
+    // Getter for budget limit
+    public BigDecimal getBudgetLimit() {
+        return budgetLimit;
     }
 
-    public void addExpense(double amount) {
-        this.spent += amount;
+    // Getter for amount spent
+    public BigDecimal getAmountSpent() {
+        return amountSpent;
     }
 
+    // Getter for date
+    public LocalDate getDate() {
+        return date;
+    }
+
+    // Method to update amount spent
+    public void addExpense(BigDecimal amount) {
+        this.amountSpent = this.amountSpent.add(amount);
+    }
+
+    // Method to calculate progress as a percentage of budget spent
+    public int getProgress() {
+        if (budgetLimit.compareTo(BigDecimal.ZERO) > 0) {
+            return (int) (amountSpent.doubleValue() / budgetLimit.doubleValue() * 100);
+        } else {
+            return 0;
+        }
+    }
 }
-

@@ -77,9 +77,10 @@
         android:layout_height="70dp"
         android:onClick="showDialog"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.739"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@android:drawable/ic_menu_add"
-        tools:layout_editor_absoluteY="78dp" />
+        tools:layout_editor_absoluteY="92dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/budgetRecyclerView"
