@@ -50,9 +50,7 @@ public class ToDoActivity extends AppCompatActivity {
         });
 
         items = loadToDo();
-
-        txtView_welcome = findViewById(R.id.txtView_welcome);
-
+        
         recView_toDo = findViewById(R.id.recView_toDo);
         recView_toDo.setLayoutManager(new LinearLayoutManager(this));
         recView_toDo.addItemDecoration(new VerticalSpacerItemDecoration(20));
