@@ -6,10 +6,13 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import com.info3245.plannerapp.activities.ToDoActivity;
+import com.info3245.plannerapp.activities.BudgetActivity;
+import com.info3245.plannerapp.activities.RemindersActivity;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
-import com.info3245.plannerapp.activities.ToDoActivity;
 
 public class HomepageActivity extends AppCompatActivity {
 
@@ -18,7 +21,7 @@ public class HomepageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
 
-        // Set up navigation buttons
+        // Set up buttons
         Button btnTodo = findViewById(R.id.btnTodo);
         Button btnReminders = findViewById(R.id.btnReminders);
         Button btnBudget = findViewById(R.id.btnBudget);
@@ -27,10 +30,9 @@ public class HomepageActivity extends AppCompatActivity {
             startActivity(new Intent(HomepageActivity.this, ToDoActivity.class));
         });
 
-       // btnReminders.setOnClickListener(v -> {
-            // Replace with your actual Reminders activity if you have one
-            //startActivity(new Intent(HomepageActivity.this, ReminderActivity.class));
-       // });
+        btnReminders.setOnClickListener(v -> {
+            startActivity(new Intent(HomepageActivity.this, RemindersActivity.class));
+        });
 
         btnBudget.setOnClickListener(v -> {
             startActivity(new Intent(HomepageActivity.this, BudgetActivity.class));
@@ -41,18 +43,18 @@ public class HomepageActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        // Load the user's name
+        // Show user name
         SharedPreferences sharedPref = getSharedPreferences("PlannerAppPrefs", MODE_PRIVATE);
         String userName = sharedPref.getString("userName", "User");
         TextView greeting = findViewById(R.id.greeting);
         greeting.setText("Welcome, " + userName);
 
-        // Load the latest reminder from a file
+        // Load the latest reminder
         String latestReminder = readLatestItemFromFile("reminders.txt");
         TextView reminderText = findViewById(R.id.reminderSummary);
         reminderText.setText("REMINDER: " + latestReminder);
 
-        // Load the latest goal from a file
+        // Load the latest goal
         String latestGoal = readLatestItemFromFile("goals.txt");
         TextView goalText = findViewById(R.id.goalSummary);
         goalText.setText("GOAL – " + latestGoal);
