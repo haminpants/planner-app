@@ -19,4 +19,7 @@
     <string name="btn_add_to_do_item">Add To List</string>
     <string name="new_to_do_item_title">New To Do Item</string>
     <string name="new_to_do_hint">Task</string>
+
+    <!-- Reminders Activity Strings -->
+    <string name="reminders_title">Reminders</string>
 </resources>
