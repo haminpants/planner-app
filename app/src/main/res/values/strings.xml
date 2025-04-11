@@ -19,4 +19,15 @@
     <string name="btn_add_to_do_item">Add To List</string>
     <string name="new_to_do_item_title">New To Do Item</string>
     <string name="new_to_do_hint">Task</string>
+
+    <!-- Reminders Activity Strings -->
+    <string name="reminders_title">Reminders</string>
+    <string name="create_a_reminder">Create a Reminder</string>
+    <string name="reminder_title">Set Title</string>
+    <string name="reminder_description">Set Description</string>
+    <string name="reminder_set_date">Set Date</string>
+    <string name="reminder_set_time">Set Time</string>
+    <string name="reminder_error_blank_title">Reminder title cannot be blank!</string>
+    <string name="reminder_error_blank_description">Reminder description cannot be blank!</string>
+    <string name="reminder_error_past_time">Selected time is in the past!</string>
 </resources>
