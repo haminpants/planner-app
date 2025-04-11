@@ -33,7 +33,7 @@
 
             <LinearLayout
                     android:orientation="vertical"
-                    android:layout_width="wrap_content"
+                    android:layout_width="240dp"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical">
 
@@ -67,7 +67,6 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     app:tint="#FFFFFF"
-                    android:layout_weight="0"
                     android:onClick="returnToHome" />
 
         </LinearLayout>

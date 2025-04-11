@@ -10,6 +10,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.info3245.plannerapp.activities.RemindersActivity;
 import com.info3245.plannerapp.activities.ToDoActivity;
 
 public class HomepageActivity extends AppCompatActivity {
@@ -28,5 +29,8 @@ public class HomepageActivity extends AppCompatActivity {
 
     public void loadToDoActivity (View v) {
         startActivity(new Intent(this, ToDoActivity.class));
+    }
+    public void loadRemindersActivity (View v) {
+        startActivity(new Intent(this, RemindersActivity.class));
     }
 }

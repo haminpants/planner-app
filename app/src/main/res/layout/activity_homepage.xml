@@ -73,4 +73,15 @@
             android:layout_marginStart="221dp"
             android:onClick="loadToDoActivity" />
 
+    <Button
+            android:text="Reminders"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button3"
+            android:onClick="loadRemindersActivity"
+            android:layout_marginTop="189dp"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="41dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
