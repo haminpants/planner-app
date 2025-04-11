@@ -29,6 +29,7 @@ public class BudgetActivity extends AppCompatActivity implements BudgetDialogFra
     private BudgetExpenseAdapter budgetAdapter;
     private List<BudgetExpense> budgetList;
     private TextView txtTotalExpense;
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
