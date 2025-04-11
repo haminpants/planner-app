@@ -5,47 +5,44 @@ import java.time.LocalDate;
 
 public class BudgetExpense {
     private String name;
-    private BigDecimal budgetLimit;
-    private BigDecimal amountSpent;
+    private double budgetLimit;
+    private double amountSpent;
     private LocalDate date;
 
     // Constructor to initialize expense
-    public BudgetExpense(String name, BigDecimal budgetLimit, BigDecimal amountSpent, LocalDate date) {
+    public BudgetExpense(String name, double budgetLimit, double amountSpent, LocalDate date) {
         this.name = name;
         this.budgetLimit = budgetLimit;
         this.amountSpent = amountSpent;
         this.date = date;
     }
 
-    // Getter for name
+
     public String getName() {
         return name;
     }
 
-    // Getter for budget limit
-    public BigDecimal getBudgetLimit() {
+    public double getBudgetLimit() {
         return budgetLimit;
     }
 
-    // Getter for amount spent
-    public BigDecimal getAmountSpent() {
+    public double getAmountSpent() {
         return amountSpent;
     }
 
-    // Getter for date
     public LocalDate getDate() {
         return date;
     }
 
     // Method to update amount spent
-    public void addExpense(BigDecimal amount) {
-        this.amountSpent = this.amountSpent.add(amount);
+    public void addExpense(double amount) {
+        this.amountSpent += amount;
     }
 
     // Method to calculate progress as a percentage of budget spent
     public int getProgress() {
-        if (budgetLimit.compareTo(BigDecimal.ZERO) > 0) {
-            return (int) (amountSpent.doubleValue() / budgetLimit.doubleValue() * 100);
+        if (budgetLimit > 0) {
+            return (int) ((amountSpent / budgetLimit) * 100);
         } else {
             return 0;
         }

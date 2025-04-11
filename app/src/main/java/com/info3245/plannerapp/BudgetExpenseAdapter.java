@@ -10,7 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 public class BudgetExpenseAdapter extends RecyclerView.Adapter<BudgetExpenseAdapter.BudgetExpenseViewHolder> {
@@ -46,14 +45,13 @@ public class BudgetExpenseAdapter extends RecyclerView.Adapter<BudgetExpenseAdap
         return expenseList.size();
     }
 
-    // Calculate progress as percentage of budget spent
+    // Calculate progress as percentage of budget spent using double
     private int calculateProgress(BudgetExpense budgetExpense) {
-        BigDecimal totalBudget = budgetExpense.getBudgetLimit();
-        BigDecimal spentAmount = budgetExpense.getAmountSpent();
+        double totalBudget = budgetExpense.getBudgetLimit();
+        double spentAmount = budgetExpense.getAmountSpent();
 
-        if (totalBudget.compareTo(BigDecimal.ZERO) > 0) {
-            return spentAmount.multiply(new BigDecimal(100))
-                    .divide(totalBudget, 0, BigDecimal.ROUND_DOWN).intValue();
+        if (totalBudget > 0) {
+            return (int) Math.floor((spentAmount / totalBudget) * 100);
         } else {
             return 0;
         }
