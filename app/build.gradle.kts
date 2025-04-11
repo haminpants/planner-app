@@ -50,6 +50,9 @@ dependencies {
     //fragment dependencies
     val fragment_version = "1.8.6"
     implementation("androidx.fragment:fragment:$fragment_version")
+    implementation ("androidx.viewpager2:viewpager2:1.0.0")
+    implementation ("com.google.android.material:material:1.4.0")
+    implementation ("com.google.code.gson:gson:2.10.1")
 
 
 }
