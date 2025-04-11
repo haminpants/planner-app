@@ -1,36 +1,84 @@
 package com.info3245.plannerapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
-
-import androidx.activity.EdgeToEdge;
+import android.widget.Button;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.info3245.plannerapp.activities.RemindersActivity;
 import com.info3245.plannerapp.activities.ToDoActivity;
+import com.info3245.plannerapp.activities.BudgetActivity;
+import com.info3245.plannerapp.activities.RemindersActivity;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 
 public class HomepageActivity extends AppCompatActivity {
 
     @Override
-    protected void onCreate (Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_homepage);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+
+        // Set up buttons
+        Button btnTodo = findViewById(R.id.btnTodo);
+        Button btnReminders = findViewById(R.id.btnReminders);
+        Button btnBudget = findViewById(R.id.btnBudget);
+
+        btnTodo.setOnClickListener(v -> {
+            startActivity(new Intent(HomepageActivity.this, ToDoActivity.class));
+        });
+
+        btnReminders.setOnClickListener(v -> {
+            startActivity(new Intent(HomepageActivity.this, RemindersActivity.class));
+        });
+
+        btnBudget.setOnClickListener(v -> {
+            startActivity(new Intent(HomepageActivity.this, BudgetActivity.class));
         });
     }
 
-    public void loadToDoActivity (View v) {
-        startActivity(new Intent(this, ToDoActivity.class));
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Show user name
+        SharedPreferences sharedPref = getSharedPreferences("PlannerAppPrefs", MODE_PRIVATE);
+        String userName = sharedPref.getString("userName", "User");
+        TextView greeting = findViewById(R.id.greeting);
+        greeting.setText("Welcome, " + userName);
+
+        // Load the latest reminder
+        String latestReminder = readLatestItemFromFile("reminders.txt");
+        TextView reminderText = findViewById(R.id.reminderSummary);
+        reminderText.setText("REMINDER: " + latestReminder);
+
+        // Load the latest goal
+        String latestGoal = readLatestItemFromFile("goals.txt");
+        TextView goalText = findViewById(R.id.goalSummary);
+        goalText.setText("GOAL – " + latestGoal);
     }
-    public void loadRemindersActivity (View v) {
-        startActivity(new Intent(this, RemindersActivity.class));
+
+    private String readLatestItemFromFile(String filename) {
+        StringBuilder stringBuilder = new StringBuilder();
+        try {
+            FileInputStream fis = openFileInput(filename);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                stringBuilder.append(line).append("\n");
+            }
+            reader.close();
+            fis.close();
+        } catch (Exception e) {
+            return "No data yet";
+        }
+
+        String[] entries = stringBuilder.toString().trim().split("\n");
+        if (entries.length == 0) return "No data yet";
+
+        return entries[entries.length - 1];
     }
 }
