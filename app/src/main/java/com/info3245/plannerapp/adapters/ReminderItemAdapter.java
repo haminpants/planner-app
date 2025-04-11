@@ -1,5 +1,6 @@
 package com.info3245.plannerapp.adapters;
 
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,21 +42,28 @@ public class ReminderItemAdapter extends RecyclerView.Adapter<ReminderItemAdapte
         return items.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
         private TextView txtView_title;
         private TextView txtView_description;
         private TextView txtView_time;
         private ImageButton imgBtn_priority;
         private final int index;
 
-        public ViewHolder (@NonNull View view, int indexCounter) {
+        public ViewHolder (@NonNull View view, int index) {
             super(view);
-            this.index = indexCounter++;
+            view.setOnCreateContextMenuListener(this);
+            this.index = index;
 
             this.txtView_title = view.findViewById(R.id.txtView_reminderTitle);
             this.txtView_description = view.findViewById(R.id.txtView_reminderDescription);
             this.txtView_time = view.findViewById(R.id.txtView_reminderTime);
             this.imgBtn_priority = view.findViewById(R.id.imgBtn_reminderPriority);
+        }
+
+        @Override
+        public void onCreateContextMenu (ContextMenu menu, View v,
+            ContextMenu.ContextMenuInfo menuInfo) {
+            menu.add(0, index, 0, "Delete");
         }
     }
 }

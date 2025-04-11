@@ -3,10 +3,12 @@ package com.info3245.plannerapp.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -74,6 +76,15 @@ public class RemindersActivity extends AppCompatActivity {
         recView_reminders.setAdapter(new ReminderItemAdapter(items));
     }
 
+    @Override
+    public boolean onContextItemSelected (@NonNull MenuItem item) {
+        ArrayList<ReminderItem> updatedItems = new ArrayList<>(items);
+        updatedItems.remove(item.getItemId());
+        recView_reminders.setAdapter(new ReminderItemAdapter(updatedItems));
+        items = updatedItems;
+
+        return true;
+    }
     public void createNewReminder (View v) {
         save(items);
         startActivity(new Intent(this, CreateReminderActivity.class));
