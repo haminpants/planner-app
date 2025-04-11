@@ -1,4 +1,4 @@
-package com.info3245.plannerapp;
+package com.info3245.plannerapp.activities;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +16,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.info3245.plannerapp.fragments.BudgetDialogFragment;
+import com.info3245.plannerapp.data.BudgetExpense;
+import com.info3245.plannerapp.R;
+import com.info3245.plannerapp.adapters.BudgetExpenseAdapter;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -88,7 +92,7 @@ public class BudgetActivity extends AppCompatActivity implements BudgetDialogFra
     }
 
     public void goHomepage(View v) {
-        Intent intent = new Intent(BudgetActivity.this, MainActivity.class);
+        Intent intent = new Intent(this, HomepageActivity.class);
         startActivity(intent);
     }
 

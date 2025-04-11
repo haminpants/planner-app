@@ -1,4 +1,4 @@
-package com.info3245.plannerapp;
+package com.info3245.plannerapp.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,9 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.info3245.plannerapp.activities.ToDoActivity;
-import com.info3245.plannerapp.activities.BudgetActivity;
-import com.info3245.plannerapp.activities.RemindersActivity;
+import com.info3245.plannerapp.R;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -27,17 +25,14 @@ public class HomepageActivity extends AppCompatActivity {
         Button btnReminders = findViewById(R.id.btnReminders);
         Button btnBudget = findViewById(R.id.btnBudget);
 
-        btnTodo.setOnClickListener(v -> {
-            startActivity(new Intent(HomepageActivity.this, ToDoActivity.class));
-        });
+        btnTodo.setOnClickListener(v ->
+            startActivity(new Intent(HomepageActivity.this, ToDoActivity.class)));
 
-        btnReminders.setOnClickListener(v -> {
-            startActivity(new Intent(HomepageActivity.this, RemindersActivity.class));
-        });
+        btnReminders.setOnClickListener(v ->
+            startActivity(new Intent(HomepageActivity.this, RemindersActivity.class)));
 
-        btnBudget.setOnClickListener(v -> {
-            startActivity(new Intent(HomepageActivity.this, BudgetActivity.class));
-        });
+        btnBudget.setOnClickListener(v ->
+            startActivity(new Intent(HomepageActivity.this, BudgetActivity.class)));
     }
 
     @Override

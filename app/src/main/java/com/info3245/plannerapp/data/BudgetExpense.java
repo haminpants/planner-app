@@ -1,6 +1,5 @@
-package com.info3245.plannerapp;
+package com.info3245.plannerapp.data;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class BudgetExpense {

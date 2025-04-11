@@ -16,7 +16,7 @@
             android:name=".ItemCategory"
             android:exported="false" />
         <activity
-            android:name=".BudgetActivity"
+            android:name=".activities.BudgetActivity"
             android:exported="false" />
         <activity
                 android:name=".activities.CreateReminderActivity"
@@ -28,7 +28,7 @@
                 android:name=".activities.ToDoActivity"
                 android:exported="false" />
         <activity
-                android:name=".HomepageActivity"
+                android:name=".activities.HomepageActivity"
                 android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,7 +37,7 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".BudgetActivity"
+                android:name=".activities.BudgetActivity"
                 android:exported="false" />
     </application>
 

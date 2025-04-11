@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BudgetActivity"
+    tools:context=".activities.BudgetActivity"
     android:padding="16dp"
     android:background="#b4cfe0">
 

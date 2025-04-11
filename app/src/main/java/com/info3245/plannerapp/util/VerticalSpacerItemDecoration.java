@@ -1,4 +1,4 @@
-package com.info3245.plannerapp;
+package com.info3245.plannerapp.util;
 
 import android.graphics.Rect;
 import android.view.View;

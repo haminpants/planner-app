@@ -16,12 +16,10 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.info3245.plannerapp.HomepageActivity;
 import com.info3245.plannerapp.R;
-import com.info3245.plannerapp.VerticalSpacerItemDecoration;
+import com.info3245.plannerapp.util.VerticalSpacerItemDecoration;
 import com.info3245.plannerapp.adapters.ReminderItemAdapter;
 import com.info3245.plannerapp.data.ReminderItem;
-import com.info3245.plannerapp.data.ToDoItem;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

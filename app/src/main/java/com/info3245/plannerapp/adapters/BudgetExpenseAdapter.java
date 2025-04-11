@@ -1,4 +1,4 @@
-package com.info3245.plannerapp;
+package com.info3245.plannerapp.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.info3245.plannerapp.data.BudgetExpense;
+import com.info3245.plannerapp.R;
 
 import java.util.List;
 

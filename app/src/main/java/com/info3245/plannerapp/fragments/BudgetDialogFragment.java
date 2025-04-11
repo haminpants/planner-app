@@ -1,9 +1,8 @@
-package com.info3245.plannerapp;
+package com.info3245.plannerapp.fragments;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,6 +11,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
+
+import com.info3245.plannerapp.R;
 
 import java.time.LocalDate;
 

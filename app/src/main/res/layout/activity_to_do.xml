@@ -43,17 +43,9 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/textView"
                         android:textColor="#FBF3F3"
-                        android:textSize="30sp"
+                        android:textSize="50sp"
                         android:textStyle="bold" />
 
-                <TextView
-                        android:text="@string/placeholder"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/txtView_welcome"
-                        android:textColor="#FFFFFF"
-                        android:textSize="40sp"
-                        android:textStyle="bold" />
             </LinearLayout>
 
             <Space
