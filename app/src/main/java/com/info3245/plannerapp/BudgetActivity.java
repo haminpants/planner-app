@@ -58,6 +58,7 @@ public class BudgetActivity extends AppCompatActivity implements BudgetDialogFra
 
         budgetList = new ArrayList<>();
         loadBudgetFromPrefs(); // Load saved budget list
+        updateTotalTextView();
 
         budgetAdapter = new BudgetExpenseAdapter(budgetList, this);
         recyclerView.setAdapter(budgetAdapter);
