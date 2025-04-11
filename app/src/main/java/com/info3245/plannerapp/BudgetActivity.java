@@ -1,6 +1,7 @@
 package com.info3245.plannerapp;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -65,6 +66,11 @@ public class BudgetActivity extends AppCompatActivity implements BudgetDialogFra
     public void showDialog(View v) {
         BudgetDialogFragment dialog = new BudgetDialogFragment();
         dialog.show(getSupportFragmentManager(), "BudgetDialog");
+    }
+
+    public void goHomepage(View v) {
+        Intent intent = new Intent(BudgetActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 
     private void showDeleteDialog(int position) {
@@ -153,4 +159,6 @@ public class BudgetActivity extends AppCompatActivity implements BudgetDialogFra
         // Update the TextView with total spent and total budget
         txtTotalExpense.setText(String.format("Total Spent: $%.2f / $%.2f", totalSpent, totalBudget));
     }
+
+
 }
