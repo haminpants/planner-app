@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import com.info3245.plannerapp.activities.ToDoActivity;
 
 public class HomepageActivity extends AppCompatActivity {
 
@@ -26,10 +27,10 @@ public class HomepageActivity extends AppCompatActivity {
             startActivity(new Intent(HomepageActivity.this, ToDoActivity.class));
         });
 
-        btnReminders.setOnClickListener(v -> {
+       // btnReminders.setOnClickListener(v -> {
             // Replace with your actual Reminders activity if you have one
-            startActivity(new Intent(HomepageActivity.this, ReminderActivity.class));
-        });
+            //startActivity(new Intent(HomepageActivity.this, ReminderActivity.class));
+       // });
 
         btnBudget.setOnClickListener(v -> {
             startActivity(new Intent(HomepageActivity.this, BudgetActivity.class));
