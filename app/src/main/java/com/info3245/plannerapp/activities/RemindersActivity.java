@@ -85,6 +85,8 @@ public class RemindersActivity extends AppCompatActivity {
     }
 
     public void save (List<ReminderItem> saveItems) {
+        saveItems.removeIf(i -> i.getTime().isBefore(LocalDateTime.now()));
+
         try (FileOutputStream outputStream = openFileOutput(fileName, Context.MODE_PRIVATE)) {
             String reminderItems = saveItems.stream()
                 .map(i -> i.getTitle() + "," + i.getDescription() + "," + i.getTime().format(DATE_TIME_FORMATTER))
