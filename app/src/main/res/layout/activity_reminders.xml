@@ -44,7 +44,8 @@
                     android:id="@+id/btn_addReminder"
                     android:background="@null"
                     android:layout_marginRight="10dp"
-                    app:tint="@color/black" />
+                    app:tint="@color/black"
+                    android:onClick="createNewReminder" />
 
             <ImageButton
                     android:layout_width="wrap_content"
