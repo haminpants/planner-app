@@ -34,6 +34,18 @@ public class BudgetExpense {
         return date;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setBudgetLimit(double budgetLimit) {
+        this.budgetLimit = budgetLimit;
+    }
+
+    public void setAmountSpent(double amountSpent) {
+        this.amountSpent = amountSpent;
+    }
+
     // Method to update amount spent
     public void addExpense(double amount) {
         this.amountSpent += amount;

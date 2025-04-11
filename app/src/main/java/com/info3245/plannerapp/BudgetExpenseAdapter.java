@@ -38,6 +38,21 @@ public class BudgetExpenseAdapter extends RecyclerView.Adapter<BudgetExpenseAdap
         // Calculate progress bar based on budget and spent amount
         int progress = calculateProgress(budgetExpense);
         holder.progressBar.setProgress(progress);
+
+        //deleting
+        holder.itemView.setOnLongClickListener(v -> {
+            if (longClickListener != null) {
+                longClickListener.onItemLongClick(position);
+            }
+            return true;
+        });
+
+        // editing
+        holder.itemView.setOnClickListener(v -> {
+            if (clickListener != null) {
+                clickListener.onItemClick(position);
+            }
+        });
     }
 
     @Override
@@ -68,5 +83,27 @@ public class BudgetExpenseAdapter extends RecyclerView.Adapter<BudgetExpenseAdap
             txtBudgetInfo = itemView.findViewById(R.id.txtBudgetInfo);
             progressBar = itemView.findViewById(R.id.progressBarBudget);
         }
+    }
+
+    // related to deleting an expense
+    public interface OnItemLongClickListener {
+        void onItemLongClick(int position);
+    }
+
+    private OnItemLongClickListener longClickListener;
+
+    public void setOnItemLongClickListener(OnItemLongClickListener listener) {
+        this.longClickListener = listener;
+    }
+
+    // related to editing an expense
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    private OnItemClickListener clickListener;
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.clickListener = listener;
     }
 }

@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,11 +13,13 @@ import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
 
+import java.time.LocalDate;
+
 public class BudgetDialogFragment extends DialogFragment {
 
     // Define an interface for communication with double values
     public interface BudgetDialogListener {
-        void onBudgetAdded(String categoryName, double budgetLimit, double amountSpent);
+        void onBudgetAdded(String expenseName, double budgetLimit, double amountSpent, LocalDate date);
     }
 
     private BudgetDialogListener listener;
@@ -54,9 +57,12 @@ public class BudgetDialogFragment extends DialogFragment {
                     try {
                         double budgetLimit = Double.parseDouble(budgetLimitStr);
                         double amountSpent = Double.parseDouble(amountSpentStr);
-
+                        LocalDate date = null;
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            date = LocalDate.now();
+                        }
                         // Send data to BudgetActivity using the interface
-                        listener.onBudgetAdded(expenseName, budgetLimit, amountSpent);
+                        listener.onBudgetAdded(expenseName, budgetLimit, amountSpent, date);
 
                         Toast.makeText(getActivity(),
                                 "Category: " + expenseName + ", Budget: $" + budgetLimit,
@@ -68,9 +74,9 @@ public class BudgetDialogFragment extends DialogFragment {
                                 Toast.LENGTH_SHORT).show();
                     }
                 })
-                .setNegativeButton("No", (dialog, id) -> {
-                    Toast.makeText(getActivity(), "No Clicked", Toast.LENGTH_SHORT).show();
-                })
+//                .setNegativeButton("No", (dialog, id) -> {
+//                    Toast.makeText(getActivity(), "No Clicked", Toast.LENGTH_SHORT).show();
+//                })
                 .setNeutralButton("Cancel", (dialog, id) -> {
                     Toast.makeText(getActivity(), "Cancel Clicked", Toast.LENGTH_SHORT).show();
                 });

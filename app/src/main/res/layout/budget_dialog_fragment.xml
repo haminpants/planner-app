@@ -19,19 +19,6 @@
         tools:layout_editor_absoluteY="34dp" />
 
     <EditText
-        android:id="@+id/txtDescription"
-        android:layout_width="324dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="Description"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtName" />
-
-    <EditText
         android:id="@+id/txtBudgetLimit"
         android:layout_width="324dp"
         android:layout_height="48dp"
@@ -42,7 +29,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
     <EditText
         android:id="@+id/txtAmountSpent"
