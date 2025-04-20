@@ -24,15 +24,12 @@ public class HomepageActivity extends AppCompatActivity {
         Button btnTodo = findViewById(R.id.btnTodo);
         Button btnReminders = findViewById(R.id.btnReminders);
         Button btnBudget = findViewById(R.id.btnBudget);
+        Button btnGoals = findViewById(R.id.btnGoals);
 
-        btnTodo.setOnClickListener(v ->
-            startActivity(new Intent(HomepageActivity.this, ToDoActivity.class)));
-
-        btnReminders.setOnClickListener(v ->
-            startActivity(new Intent(HomepageActivity.this, RemindersActivity.class)));
-
-        btnBudget.setOnClickListener(v ->
-            startActivity(new Intent(HomepageActivity.this, BudgetActivity.class)));
+        btnTodo.setOnClickListener(v -> startActivity(new Intent(this, ToDoActivity.class)));
+        btnReminders.setOnClickListener(v -> startActivity(new Intent(this, RemindersActivity.class)));
+        btnBudget.setOnClickListener(v -> startActivity(new Intent(this, BudgetActivity.class)));
+        btnGoals.setOnClickListener(v -> startActivity(new Intent(this, GoalActivity.class)));
     }
 
     @Override

@@ -30,4 +30,13 @@
     <string name="reminder_error_blank_title">Reminder title cannot be blank!</string>
     <string name="reminder_error_blank_description">Reminder description cannot be blank!</string>
     <string name="reminder_error_past_time">Selected time is in the past!</string>
+
+    <!-- Goal Activity Strings -->
+    <string name="create_goal">Create Goal</string>
+    <string name="your_goals">Your Goals</string>
+    <string name="setup_finance_goal">Setup Finance Goal</string>
+    <string name="no_finance_goal_set">No finance goal set</string>
+    <string name="update_progress">Update Progress</string>
+    <string name="finance_goal_progress">Finance Goal Progress</string>
+    <string name="update_finance_goal">Update Finance Goal</string>
 </resources>

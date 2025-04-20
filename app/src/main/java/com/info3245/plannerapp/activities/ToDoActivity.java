@@ -25,6 +25,7 @@ import com.info3245.plannerapp.adapters.ToDoItemAdapter;
 import com.info3245.plannerapp.data.ToDoItem;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,7 +51,7 @@ public class ToDoActivity extends AppCompatActivity {
         });
 
         items = loadToDo();
-        
+
         recView_toDo = findViewById(R.id.recView_toDo);
         recView_toDo.setLayoutManager(new LinearLayoutManager(this));
         recView_toDo.addItemDecoration(new VerticalSpacerItemDecoration(20));
@@ -128,6 +129,7 @@ public class ToDoActivity extends AppCompatActivity {
             return Arrays.stream(output.toString().trim().split("\n"))
                 .map(ToDoItem::new).collect(Collectors.toList());
         }
+        catch (FileNotFoundException ignored) {}
         catch (Exception e) {
             Toast.makeText(this, "Failed to load to do", Toast.LENGTH_SHORT).show();
         }
