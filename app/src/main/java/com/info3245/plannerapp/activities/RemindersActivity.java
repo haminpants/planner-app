@@ -22,6 +22,7 @@ import com.info3245.plannerapp.adapters.ReminderItemAdapter;
 import com.info3245.plannerapp.data.ReminderItem;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -125,8 +126,9 @@ public class RemindersActivity extends AppCompatActivity {
                     return new ReminderItem(values[0], values[1], LocalDateTime.parse(values[2], DATE_TIME_FORMATTER));
                 }).collect(Collectors.toList());
         }
+        catch (FileNotFoundException ignored) {}
         catch (Exception e) {
-            Toast.makeText(this, "Failed to load to do", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Failed to load reminders", Toast.LENGTH_SHORT).show();
         }
         return List.of();
     }
