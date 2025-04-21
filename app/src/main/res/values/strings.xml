@@ -41,4 +41,5 @@
     <string name="update_finance_goal">Update Finance Goal</string>
     <string name="add_sub_goal">Add Sub-Goal</string>
     <string name="goal_title">Goal Title</string>
+    <string name="subgoal">Subgoal</string>
 </resources>

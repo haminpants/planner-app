@@ -27,20 +27,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.info3245.plannerapp.R;
 import com.info3245.plannerapp.adapters.GoalItemAdapter;
 import com.info3245.plannerapp.data.GoalItem;
-import com.info3245.plannerapp.data.ToDoItem;
+import com.info3245.plannerapp.data.SubGoalItem;
 import com.info3245.plannerapp.util.VerticalSpacerItemDecoration;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class GoalActivity extends AppCompatActivity {
-    private static final String fileName = "finance_goal.txt";
+    private static final String financeFileName = "finance_goal.txt";
+    private static final String goalsFileName = "goals.txt";
 
     TextView txtView_financeGoalHeader;
     TextView txtView_financeGoalDescription;
@@ -76,15 +76,10 @@ public class GoalActivity extends AppCompatActivity {
         btn_financeGoalData = findViewById(R.id.btn_financeGoalData);
         recView_goals = findViewById(R.id.recView_goals);
 
-        loadFinanceGoalData();
+        loadData();
         updateFinanceGoalDisplay();
 
-        goalItems.addAll(List.of(
-            new GoalItem("Be cool"),
-            new GoalItem("Don't die")
-        ));
-
-        goalItemAdapter = new GoalItemAdapter(goalItems);
+        goalItemAdapter = new GoalItemAdapter(goalItems, this);
         recView_goals.setLayoutManager(new LinearLayoutManager(this));
         recView_goals.addItemDecoration(new VerticalSpacerItemDecoration(20));
         recView_goals.setAdapter(goalItemAdapter);
@@ -98,7 +93,7 @@ public class GoalActivity extends AppCompatActivity {
     }
 
     private void saveData () {
-        try (FileOutputStream outputStream = openFileOutput(fileName, Context.MODE_PRIVATE)) {
+        try (FileOutputStream outputStream = openFileOutput(financeFileName, Context.MODE_PRIVATE)) {
             String data = financeGoalProgress + "," + financeGoal + "\n" + financeGoalDescription;
             outputStream.write(data.getBytes());
             outputStream.flush();
@@ -106,9 +101,24 @@ public class GoalActivity extends AppCompatActivity {
         catch (Exception e) {
             Toast.makeText(this, "Failed to save finance goals", Toast.LENGTH_SHORT).show();
         }
+        try (FileOutputStream outputStream = openFileOutput(goalsFileName, Context.MODE_PRIVATE)) {
+            StringBuilder data = new StringBuilder();
+            for (GoalItem goalItem : goalItems) {
+                data.append(goalItem.getTitle()).append(";")
+                    .append(goalItem.getSubGoals().stream()
+                        .map(i -> i.getTitle() + "," + i.isComplete())
+                        .collect(Collectors.joining(";")))
+                    .append("\n");
+            }
+            outputStream.write(data.toString().trim().getBytes());
+            outputStream.flush();
+        }
+        catch (Exception e) {
+            Toast.makeText(this, "Failed to save goals", Toast.LENGTH_SHORT).show();
+        }
     }
-    private void loadFinanceGoalData () {
-        try (FileInputStream inputStream = openFileInput(fileName)) {
+    private void loadData () {
+        try (FileInputStream inputStream = openFileInput(financeFileName)) {
             StringBuilder output = new StringBuilder();
             int readByte;
 
@@ -125,6 +135,34 @@ public class GoalActivity extends AppCompatActivity {
         catch (FileNotFoundException ignored) {}
         catch (Exception e) {
             Toast.makeText(this, "Failed to load finance data", Toast.LENGTH_SHORT).show();
+        }
+        try (FileInputStream inputStream = openFileInput(goalsFileName)) {
+            StringBuilder output = new StringBuilder();
+            int readByte;
+
+            while ((readByte = inputStream.read()) != -1) {
+                output.append((char) readByte);
+            }
+            if (output.toString().isBlank()) return;
+
+            String[] goalDataStr = output.toString().split("\n");
+            List<GoalItem> loadedItems = Arrays.stream(goalDataStr)
+                .map(goalData -> {
+                    String[] data = goalData.split(";");
+                    GoalItem item = new GoalItem(data[0]);
+                    for (int i = 1; i < data.length; i++) {
+                        String[] subGoalData = data[i].split(",");
+                        item.getSubGoals().add(new SubGoalItem(subGoalData[0],
+                            Boolean.parseBoolean(subGoalData[1])));
+                    }
+                    return item;
+                }).collect(Collectors.toList());
+            goalItems.clear();
+            goalItems.addAll(loadedItems);
+        }
+        catch (FileNotFoundException ignored) {}
+        catch (Exception e) {
+            Toast.makeText(this, "Failed to load goal data", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -224,6 +262,7 @@ public class GoalActivity extends AppCompatActivity {
             .setPositiveButton("Create", (dialog, which) -> {
                 goalItems.add(new GoalItem(editTxt_goalTitle.getText().toString()));
                 goalItemAdapter.notifyItemChanged(goalItems.size());
+                saveData();
             })
             .setNegativeButton("Cancel", (dialog, which) -> {})
             .create();
