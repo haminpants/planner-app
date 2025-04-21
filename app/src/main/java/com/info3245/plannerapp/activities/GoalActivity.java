@@ -6,6 +6,7 @@ import static android.view.View.VISIBLE;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,19 +15,26 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.info3245.plannerapp.R;
+import com.info3245.plannerapp.adapters.GoalItemAdapter;
+import com.info3245.plannerapp.data.GoalItem;
 import com.info3245.plannerapp.data.ToDoItem;
+import com.info3245.plannerapp.util.VerticalSpacerItemDecoration;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -40,10 +48,14 @@ public class GoalActivity extends AppCompatActivity {
     ProgressBar progBar_financeGoal;
     Button btn_updateFinanceGoalProgress;
     Button btn_financeGoalData;
+    RecyclerView recView_goals;
 
-    int financeGoal = 0;
-    String financeGoalDescription = "";
-    int financeGoalProgress = 0;
+    private int financeGoal = 0;
+    private String financeGoalDescription = "";
+    private int financeGoalProgress = 0;
+
+    private GoalItemAdapter goalItemAdapter;
+    private List<GoalItem> goalItems = new ArrayList<>();
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -62,9 +74,27 @@ public class GoalActivity extends AppCompatActivity {
         progBar_financeGoal = findViewById(R.id.progBar_financeGoal);
         btn_updateFinanceGoalProgress = findViewById(R.id.btn_updateFinanceGoalProgress);
         btn_financeGoalData = findViewById(R.id.btn_financeGoalData);
+        recView_goals = findViewById(R.id.recView_goals);
 
         loadFinanceGoalData();
         updateFinanceGoalDisplay();
+
+        goalItems.addAll(List.of(
+            new GoalItem("Be cool"),
+            new GoalItem("Don't die")
+        ));
+
+        goalItemAdapter = new GoalItemAdapter(goalItems);
+        recView_goals.setLayoutManager(new LinearLayoutManager(this));
+        recView_goals.addItemDecoration(new VerticalSpacerItemDecoration(20));
+        recView_goals.setAdapter(goalItemAdapter);
+    }
+
+    @Override
+    public boolean onContextItemSelected (@NonNull MenuItem item) {
+        goalItems.remove(item.getItemId());
+        goalItemAdapter.notifyItemRemoved(item.getItemId());
+        return true;
     }
 
     private void saveData () {
@@ -181,6 +211,22 @@ public class GoalActivity extends AppCompatActivity {
             }).setNegativeButton("Cancel", (dialog, which) -> {})
             .create();
 
+        alert.show();
+    }
+
+    public void createNewGoal (View v) {
+        View form = getLayoutInflater().inflate(R.layout.new_goal_item, null);
+        EditText editTxt_goalTitle = form.findViewById(R.id.editTxt_goalTitle);
+
+        AlertDialog alert = new AlertDialog.Builder(this)
+            .setTitle("Create A New Goal")
+            .setView(form)
+            .setPositiveButton("Create", (dialog, which) -> {
+                goalItems.add(new GoalItem(editTxt_goalTitle.getText().toString()));
+                goalItemAdapter.notifyItemChanged(goalItems.size());
+            })
+            .setNegativeButton("Cancel", (dialog, which) -> {})
+            .create();
         alert.show();
     }
 }

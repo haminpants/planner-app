@@ -39,4 +39,6 @@
     <string name="update_progress">Update Progress</string>
     <string name="finance_goal_progress">Finance Goal Progress</string>
     <string name="update_finance_goal">Update Finance Goal</string>
+    <string name="add_sub_goal">Add Sub-Goal</string>
+    <string name="goal_title">Goal Title</string>
 </resources>
