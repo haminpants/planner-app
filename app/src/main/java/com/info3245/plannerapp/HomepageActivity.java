@@ -1,4 +1,4 @@
-package com.info3245.plannerapp;
+package com.info3245.plannerapp.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,10 +8,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.info3245.plannerapp.activities.ToDoActivity;
-import com.info3245.plannerapp.data.BudgetActivity;
-import com.info3245.plannerapp.activities.RemindersActivity;
-import com.info3245.plannerapp.activities.GoalActivity;
+import com.info3245.plannerapp.R;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -33,7 +30,7 @@ public class HomepageActivity extends AppCompatActivity {
         reminderText = findViewById(R.id.reminderSummary);
         goalText = findViewById(R.id.goalSummary);
 
-        // Set up buttons
+        // Set up button navigation
         Button btnTodo = findViewById(R.id.btnTodo);
         Button btnReminders = findViewById(R.id.btnReminders);
         Button btnBudget = findViewById(R.id.btnBudget);
